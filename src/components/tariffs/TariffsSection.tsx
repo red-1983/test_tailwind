@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Card from '@/components/card/Card';
-import Timer from '@/components/timer/Timer';
-import ExclamationMark from '@/components/Icon/ExclamationMark';
-import Form from '@/components/form/Form';
-import { CardPropsData } from '@/types/data.types';
-import image1 from '@/assets/img1.png';
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Card from "@/components/card/Card";
+import Timer from "@/components/timer/Timer";
+import ExclamationMark from "@/components/Icon/ExclamationMark";
+import Form from "@/components/form/Form";
+import { CardPropsData } from "@/types/data.types";
+import image1 from "@/assets/img1.png";
 
 interface TariffsSectionProps {
   cardData: CardPropsData[];
@@ -33,8 +33,8 @@ const TariffsSection = ({ cardData }: TariffsSectionProps) => {
   const showDiscount = seconds > 0;
 
   const calculateSale = (fullPrice: number, price: number) => {
-    if (!showDiscount || !fullPrice) return;
-    return Math.round(((fullPrice - price) / fullPrice) * 100) || 0;
+    if (!fullPrice || !price) return 0;
+    return Math.round(((fullPrice - price) / fullPrice) * 100);
   };
 
   return (
@@ -48,7 +48,7 @@ const TariffsSection = ({ cardData }: TariffsSectionProps) => {
       <section className="bg-[#232829] w-full mx-auto pb-37 px-4 lg:px-0">
         <div className="max-w-[1216px] mx-auto pt-10 ">
           <p className="text-[clamp(1.4rem,2.5vw,2.5rem)] text-white ">
-            Выбери подходящий для себя{' '}
+            Выбери подходящий для себя{" "}
             <span className="text-[#FDB056]">тариф</span>
           </p>
           <div className="w-full flex flex-col lg:flex-row gap-5 h-min items-center justify-between mt-5 mb-5 md:mt-25">
@@ -57,7 +57,7 @@ const TariffsSection = ({ cardData }: TariffsSectionProps) => {
                 src={image1}
                 alt="image1"
                 fill
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               />
             </div>
             <div className="w-full max-w-[748px] h-min flex-col justify-between">
@@ -66,11 +66,12 @@ const TariffsSection = ({ cardData }: TariffsSectionProps) => {
                   <Card
                     {...bestCard}
                     sale={
-                      bestCard.full_price
+                      showDiscount && bestCard.full_price && bestCard.price
                         ? calculateSale(bestCard.full_price, bestCard.price)
                         : 0
                     }
-                    full_price={showDiscount ? bestCard.full_price : undefined}
+                    price={showDiscount ? bestCard.price : bestCard.full_price}
+                    full_price={!showDiscount ? undefined : bestCard.full_price}
                   />
                 )}
                 <div className="flex w-full flex-col gap-5 lg:flex-row">
@@ -79,11 +80,12 @@ const TariffsSection = ({ cardData }: TariffsSectionProps) => {
                       key={card.id}
                       {...card}
                       sale={
-                        card.full_price
+                        showDiscount && card.full_price && card.price
                           ? calculateSale(card.full_price, card.price)
                           : 0
                       }
                       className="w-full lg:w-1/3"
+                      price={showDiscount ? card.price : card.full_price}
                       full_price={!showDiscount ? undefined : card.full_price}
                     />
                   ))}
@@ -99,7 +101,7 @@ const TariffsSection = ({ cardData }: TariffsSectionProps) => {
               <Form />
             </div>
           </div>
-          <div className="mt-25 rounded-[16px] p-5 border-1 border-[#484D4E] flex flex-col gap-5">
+          <div className="mt-10 md:mt-25rounded-[16px] p-5 border-1 border-[#484D4E] flex flex-col gap-5">
             <p className="w-full h-[41px] sm:h-[68px] max-w-[461px] flex items-center justify-center rounded-[16px] border-[#81FE95] border-1 text-[#81FE95] text-[clamp(1rem,2.5vw,1.8rem)]">
               гарантия возврата 30 дней
             </p>
