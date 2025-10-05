@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { CardPropsData } from '@/types/data.types';
 
 interface CardProps extends CardPropsData {
+  full_price?: number | null;
   className?: string;
   sale?: number;
 }
