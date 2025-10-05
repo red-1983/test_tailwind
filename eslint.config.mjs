@@ -16,7 +16,12 @@ const eslintConfig = [
     plugins: {
       prettier: prettierPlugin,
     },
-    rules: prettierPlugin.configs.recommended.rules,
+    rules: {
+      'prettier/prettier': [
+        'error',
+        { singleQuote: true, trailingComma: 'all', semi: true },
+      ],
+    },
   },
   {
     ignores: [
