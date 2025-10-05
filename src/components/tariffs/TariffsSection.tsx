@@ -33,7 +33,7 @@ const TariffsSection = ({ cardData }: TariffsSectionProps) => {
   const showDiscount = seconds > 0;
 
   const calculateSale = (fullPrice: number, price: number) => {
-    if (!fullPrice || !price) return 0;
+    if (!fullPrice || !price) return;
     return Math.round(((fullPrice - price) / fullPrice) * 100);
   };
 
@@ -68,9 +68,13 @@ const TariffsSection = ({ cardData }: TariffsSectionProps) => {
                     sale={
                       showDiscount && bestCard.full_price && bestCard.price
                         ? calculateSale(bestCard.full_price, bestCard.price)
-                        : 0
+                        : undefined
                     }
-                    price={showDiscount ? bestCard.price : bestCard.full_price}
+                    price={
+                      showDiscount
+                        ? (bestCard.price ?? 0)
+                        : (bestCard.full_price ?? 0)
+                    }
                     full_price={!showDiscount ? undefined : bestCard.full_price}
                   />
                 )}
@@ -82,10 +86,14 @@ const TariffsSection = ({ cardData }: TariffsSectionProps) => {
                       sale={
                         showDiscount && card.full_price && card.price
                           ? calculateSale(card.full_price, card.price)
-                          : 0
+                          : undefined
                       }
                       className="w-full lg:w-1/3"
-                      price={showDiscount ? card.price : card.full_price}
+                      price={
+                        showDiscount
+                          ? (card.price ?? 0)
+                          : (card.full_price ?? 0)
+                      }
                       full_price={!showDiscount ? undefined : card.full_price}
                     />
                   ))}
