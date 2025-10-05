@@ -101,7 +101,7 @@ const TariffsSection = ({ cardData }: TariffsSectionProps) => {
               <Form />
             </div>
           </div>
-          <div className="mt-10 md:mt-25rounded-[16px] p-5 border-1 border-[#484D4E] flex flex-col gap-5">
+          <div className="mt-10 md:mt-25 rounded-[16px] p-5 border-1 border-[#484D4E] flex flex-col gap-5">
             <p className="w-full h-[41px] sm:h-[68px] max-w-[461px] flex items-center justify-center rounded-[16px] border-[#81FE95] border-1 text-[#81FE95] text-[clamp(1rem,2.5vw,1.8rem)]">
               гарантия возврата 30 дней
             </p>
