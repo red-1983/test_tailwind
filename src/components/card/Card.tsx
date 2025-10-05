@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import { CardPropsData } from '@/types/data.types';
 
-interface CardProps extends CardPropsData {
+type CardProps = Omit<CardPropsData, 'full_price'> & {
   full_price?: number | null;
   className?: string;
   sale?: number;
-}
+};
 
 const Card = ({
   className,
