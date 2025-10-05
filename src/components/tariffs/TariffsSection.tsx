@@ -75,7 +75,9 @@ const TariffsSection = ({ cardData }: TariffsSectionProps) => {
                         ? (bestCard.price ?? 0)
                         : (bestCard.full_price ?? 0)
                     }
-                    full_price={!showDiscount ? undefined : bestCard.full_price}
+                    full_price={
+                      !showDiscount ? null : (bestCard.full_price ?? null)
+                    }
                   />
                 )}
                 <div className="flex w-full flex-col gap-5 lg:flex-row">
@@ -94,7 +96,9 @@ const TariffsSection = ({ cardData }: TariffsSectionProps) => {
                           ? (card.price ?? 0)
                           : (card.full_price ?? 0)
                       }
-                      full_price={!showDiscount ? undefined : card.full_price}
+                      full_price={
+                        !showDiscount ? null : (card.full_price ?? null)
+                      }
                     />
                   ))}
                 </div>
