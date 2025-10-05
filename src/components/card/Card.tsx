@@ -61,10 +61,10 @@ const Card = ({
             <div
               className={clsx("mt-auto", is_best && "lg:mt-0 lg:text-right")}
             >
-              <p className="text-[#FDB056] font-bold text-[clamp(2rem,2.5vw,3.1rem)]">
+              {price !== null && <p className="text-[#FDB056] font-bold text-[clamp(2rem,2.5vw,3.1rem)]">
                 {price} ₽
-              </p>
-              {full_price !== undefined && (
+              </p>}
+              {full_price !== null && (
                 <p className="text-[#8B8E8F] line-through text-[clamp(0.9rem,2.5vw,1.5rem)]">
                   {full_price} ₽
                 </p>
